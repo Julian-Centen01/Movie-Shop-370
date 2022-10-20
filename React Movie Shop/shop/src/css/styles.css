@@ -1,0 +1,125 @@
+a{
+  color: white;
+}
+
+a:hover{
+  color: purple;
+}
+
+body {
+    --color-primary: #009579;
+    --color-primary-dark: #007f67;
+    --color-secondary: #252c6a;
+    --color-error: #cc3333;
+    --color-success: #4bb544;
+    --border-radius: 4px;   
+  height: 100vh;
+  margin: 0;
+  font-size: 18px;
+  background-image: url(../images/loginbgrnd.png);
+  background-size:1920px 1080px ;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+  
+
+  .login{
+    float: right;
+    height: 600px;
+    max-height: 600px;
+    max-width: 400px;
+    margin: 2rem 2rem auto auto;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0,0,0,00.2);
+    border-radius: var(--border-radius);
+    background: #ffffff;
+  }
+
+  .form__input,
+  .form__button{
+    font: 500 1rem 'Quicksand', sans-serif;
+  }
+
+  .form--hidden {
+    display: none;
+  }
+
+  /* Dont really use */
+  .form > *:first-child{
+    margin-top: 0;
+  }
+  .form > *:last-child{
+    margin-bottom: 0;
+  }
+
+  .form__title {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .form__message {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  /*for the messages   */
+  .form__message--success{
+    color: var(--color-success);
+  }
+
+  .form__message--error{
+    color: var(--color-error);
+  }
+
+  .form__input-group {
+    margin-bottom: 1rem;
+  }
+  /* slightly changes color of form backgrounds and adds spacing */
+  .form__input{
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  /* adds green border around box and makes background white (on click) */
+  .form__input:focus {
+    border-color: var(--color-primary);
+    background: #ffffff;
+  }
+  /* validation colors */
+  .form__input--error {
+    color: var(--color-error);
+    border-color: var(--color-error);
+  }
+  /* adds styling to error messages */
+  .form__input-error-message {
+    margin-top: .5rem;
+    font-size: .85rem;
+    color: var(--color-error);
+  }
+
+  .form__button{
+    width: 99%;
+  }
+
+  .form__buttonS{
+    width: 49%;
+  }
+
+  .form__text{
+    text-align: center;
+  }
+
+  .form__link {
+    text-decoration: none;
+  }
+
+  .form__link:hover{
+    text-decoration: underline;
+  }
+
