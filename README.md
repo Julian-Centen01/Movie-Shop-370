@@ -27,7 +27,7 @@ Working with React, Javascript, CSS, PostgreSQL.
     ```shell
     # Start backend in one terminal
     cd Movie-Shop-370/Application/node-postgres
-    node backend/index.js
+    npm start
    
     # Start frontend in one terminal
     cd Movie-Shop-370/Application/react-postgres
