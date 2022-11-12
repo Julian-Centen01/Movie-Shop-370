@@ -10,20 +10,20 @@ const movies = [
 
 ]
 
-const row = (props) => {
+const Row = (props) => {
   const {id, name, price, quantity, description, delRow, index} = props
   return (<React.Fragment>
     <tr>
       <td> {name} </td>
       <td> {price}</td>
       <td> {quantity}</td>
-      <td> {id} </td>
-    </tr>
-    <tr>
-      <td colSpan="4"> {description}  </td>
+      {/*<td> {id} </td>*/}
       <td><button onClick={
         () => {delRow(index)}
       }>Delete</button></td>
+    </tr>
+    <tr>
+      <td colSpan="4"> {description}  </td>
     </tr>
   </React.Fragment>
   )
@@ -42,9 +42,9 @@ Row.propTypes = {
 };
 */}
 
-const Table = (props) => {
+const TableData = (props) => {
   const {data, delRow} = props
-  return(<table>
+  return(
     <tbody>
     {data.map((row, index) =>
       <Row key = {index}
@@ -58,7 +58,7 @@ const Table = (props) => {
     )}
 
     </tbody>
-  </table>)
+  )
 }
 
 
@@ -102,10 +102,10 @@ function App() {
 
             <th>Price</th>
             <th>Quantity</th>
-            <Table data = {rows}
-              delRow = {deleteRow}
-            />
           </tr>
+          <TableData data = {rows}
+                     delRow = {deleteRow}
+          />
           {/*<tr>
             <td>name</td>
 
