@@ -1,27 +1,28 @@
-import mongoose from 'mongoose'
+const Pool = require('pg').Pool
 
-const cart_itemsSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: 'id required'
-    },
-    session_id: {
-        type:Number,
-        required: 'session_id required'
-    },
-    movie_id: {
-        type: Number,
-        required: 'movie_id required',
-        movie_db: {type: mongoose.Schema.ObjectId, ref: 'movies'}
-    },
-    quantity: {
-        type: Number,
-        required: 'quantity required'
-    }
+const getCart = () => {
+    return new Promise(function(resolve, reject) {
+        pool.query('SELECT session_id FROM cart_items UNION SELECT title FROM movies ORDER BY id DESC', (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(results.rows);
+        })
+    })
+}
 
-
-
-
-})
-
-export default mongoose.model('cart_items', cart_itemsSchema)
+const deleteCartMovie = (movieId) => {
+    return new Promise(function(resolve, reject) {
+        const id = parseInt(movieId)
+        pool.query('DELETE FROM cart_items WHERE movie_id = $1', [id], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(`movie deleted with id: ${id}`);
+        })
+    })
+}
+module.exports = {
+    getCart ,
+    deleteCartMovie ,
+}
