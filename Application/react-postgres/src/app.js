@@ -7,6 +7,7 @@ import './css/App.css';
  import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import ForgotPW from './pages/ForgotPW';
+import Chat from "./pages/chat";
 function App() {
   return <div>
     <div className="App">
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/ForgotPW" element={<ForgotPW />} />
+          <Route path="/chat" element={<Chat />} />
           {/* <Route path="/shop" element={<Shop />} /> */}
         </Routes>
       </Router>

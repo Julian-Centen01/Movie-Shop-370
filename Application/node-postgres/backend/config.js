@@ -1,5 +1,5 @@
 const PORT = 3001;
-const HOST = "0.0.0.0";
+const HOST = "localhost";
 const DB_PORT = 5432;
 const DB_NAME = "movieshop";
 const DB_USER = "postgres";
