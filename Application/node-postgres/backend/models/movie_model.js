@@ -19,6 +19,7 @@ const postUser = ({userName, password, email}) => {
 
 const searchMovie = (body) => {
     const {title} = body
+    console.log(title)
     return query('SELECT title FROM movies WHERE title LIKE $1', [`%${title}%`])
         .then(({rows}) => rows);
 };

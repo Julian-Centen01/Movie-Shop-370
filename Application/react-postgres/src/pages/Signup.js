@@ -1,11 +1,11 @@
 import React, {Fragment, useState} from 'react';
-import '../css/styles.css';
-import '../css/bootstrap.css';
+// import '../css/styles.css';
+// import '../css/bootstrap.css';
 import { Link } from 'react-router-dom';
 // will any of these work?
-<link rel="preconnect" href="https://fonts.googleapis.com"></link>;
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>;
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet"></link>;
+// <link rel="preconnect" href="https://fonts.googleapis.com"></link>;
+// <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>;
+// <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet"></link>;
 
 const Signup = () => 
 {

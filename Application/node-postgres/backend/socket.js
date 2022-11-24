@@ -8,7 +8,7 @@ const server = http.createServer(app); //http server
 const io = new Server(server, {
     cors: {
         origin: `http://${HOST}:3000`, //FRONTEND LOCATION WITH REACT
-        methods: ["GET", "POST"], //METHODS WE ARE ACCEPTING (PROPERTIES AND FUNCRTIONS WITH COORS
+        methods: ["GET", "POST"], //METHODS WE ARE ACCEPTING (PROPERTIES AND FUNCTIONS WITH COORS
     },
 });
 
