@@ -1,4 +1,4 @@
-const {query, db} = require("./posgres-queries");
+const {query} = require("./posgres-queries");
 
 const getMovie = () => {
     return query("SELECT * FROM movies")
@@ -24,9 +24,14 @@ const searchMovie = (body) => {
         .then(({rows}) => rows);
 };
 
+const friendList = ({id}) =>
+    query('SELECT u.* FROM users u INNER JOIN friends f on u.id = f.friend_id WHERE f.user_id=$1', [id])
+        .then(({rows}) => rows);
+
 module.exports = {
     searchMovie,
     getMovie,
     postUser,
-    getUser
+    getUser,
+    friendList,
 }
