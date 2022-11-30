@@ -12,21 +12,26 @@ const Chat = () => {
         {name: "Madelyn student"},
         {name: "Asia Griffith"}
     ]);
-    const [socket] = useState(io.connect("http://localhost:3001"));
+    const [socket, setSocket] = useState();
     const [messages, setMessages] = useState([
         // {author: "Asia", timestamp: Date.now(), content: "blahabladhfsh"},
         // {author: "Asia", timestamp: Date.now(), content: "blahabladhfsh"},
         // {author: "Asia", timestamp: Date.now(), content: "blahabladhfsh"},
     ]);
-    socket.on("receive_message", message => setMessages([...messages, message]));
-    socket.on("message_history", messages => setMessages(messages));
     useEffect(() => {
-        socket.emit("username", {name: user?.username});
+        fetch(`${BACKEND_HOST}/users/${user?.id || -1}/friends`) //getting friend data and translates the information into json and puts it in the friend component
+            .then(response => response.json())
+            .then(friends => setFriends(friends));
+        // socket?.emit("username", {username: user?.username});
     }, [user, socket]); //Watching for changes in the user variable
-
-    fetch(`${BACKEND_HOST}/users/${17}/friends`) //getting friend data and translates the information into json and puts it in the friend component
-        .then(response => response.json())
-        .then(friends => setFriends(friends));
+    useEffect(() => {
+        const socket = io("http://localhost:3001");
+        setSocket(socket);
+        socket.on("user", user => setUser(user));
+        // socket.on("receive_message", message => setMessages([...messages, message]));
+        // socket.on("message_history", messages => setMessages(messages));
+        return () => socket.disconnect();
+    }, []);
 
     return <>
 
@@ -39,10 +44,10 @@ const Chat = () => {
 
             <div className="col justify-content-center">
 
-                <UserProfile updateUser={setUser}/>
+                <UserProfile updateUser={user=>socket?.emit("username", {username: user?.username})}/> {/*when someone changes the username we send the message to the socket.backend*/}
                 <ChatRoom user={user} messages={messages}/>
                 <MessageSender user={user}
-                               sendMessage={message => socket.emit("send_message", message)}/>
+                               sendMessage={message => socket?.emit("send_message", message)}/>
             </div>
         </div>
 

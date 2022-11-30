@@ -4,7 +4,7 @@ const ChatFriends = (props) => {
     return <aside>
         <h1>FRIEND LIST</h1>
         {props.friends?.map(friend => { //js map function for arrays to loop over items/entries: and maps it to the div element
-            return <div className="card bg-light mb-3">
+            return <div className="card bg-light mb-30" key={Math.random()}>
                 <img src={user1} className="card-img-top with-small" alt="profile pic"/>
                 <div className="card-body">
                     <h5 className="card-title">{friend.username}</h5>

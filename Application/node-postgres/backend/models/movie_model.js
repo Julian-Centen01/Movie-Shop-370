@@ -28,10 +28,15 @@ const friendList = ({id}) =>
     query('SELECT u.* FROM users u INNER JOIN friends f on u.id = f.friend_id WHERE f.user_id=$1', [id])
         .then(({rows}) => rows);
 
+const findUserByUsername = (username) =>
+    query('SELECT u.* FROM users u WHERE u.username=$1', [username])
+        .then(({rows}) => rows[0]);
+
 module.exports = {
     searchMovie,
     getMovie,
     postUser,
     getUser,
     friendList,
+    findUserByUsername,
 }

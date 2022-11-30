@@ -1,7 +1,8 @@
 const {Server} = require("socket.io"); // REQUIRING SOCKET.IO SERVER
 const http = require('http');
 const app = require("./http");
-const {HOST, PORT} = require('./config');
+const {HOST} = require('./config');
+const {findUserByUsername} = require('./models/movie_model');
 
 
 const server = http.createServer(app); //http server
@@ -19,21 +20,24 @@ io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
     socket.join("the-room"); // whenever someone joins the room: they are added
     socket.on("username", data => { //User writes name
-        userMap[socket.id] = data.name; //store name here
-        if (data.name) {
-            io.to("the-room").emit("message_history", messages); // sends whole history of messages to new user
-        }
-        console.log(data.name, "is behind", socket.id); //this user is behind that socket id
-    }); //keeps track of the username
-    socket.on("send_message", (data) => {
-        console.log("send_message", data);
-        messages.push({
-            ...data,
-            from: userMap[socket.id],
-        });
-        io.to("the-room").emit("receive_message", {
-            ...data,
-            from: userMap[socket.id],
+        const username = data.username;
+        findUserByUsername(username)
+            .then(user => {
+                userMap[socket.id] = username; //store name here
+                io.to("the-room").emit("message_history", messages); // sends whole history of messages to new user
+                console.log(username, "is behind", socket.id, "as user", user); //this user is behind that socket id
+                socket.emit("user", user); //Backend finds user and lets front end know
+            }); //keeps track of the username
+        socket.on("send_message", (data) => {
+            console.log("send_message", data);
+            messages.push({
+                ...data,
+                from: userMap[socket.id],
+            });
+            io.to("the-room").emit("receive_message", {
+                ...data,
+                from: userMap[socket.id],
+            });
         });
     });
 });
