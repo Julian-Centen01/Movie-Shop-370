@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {Fragment, useState} from 'react'
+import 'models/cart_items.model'
 import * as PropTypes from "prop-types";
 
 
